@@ -4,6 +4,16 @@
       return "<a href='#{url}'>#{name}</a>"
     end
   %>
+  <%= @request.query.inspect %>
+  <% if @request.query['first_name'] && !@request.query['first_name'].empty? %>
+    Hello there <%= @request.query['first_name'] %>
+  <% else %>
+    Enter thy name please
+    <form method='post' action="<%= @request.path %>">
+      First name: <input type="text" name="first_name" placeholder='first name'/><br />
+      <input type="submit" value="Submit" />
+    </form>
+  <% end %>
   <body>
     <h1>Created using a layout</h1>
     <p>
